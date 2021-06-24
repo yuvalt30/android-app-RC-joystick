@@ -9,10 +9,10 @@ public class Model {
     Socket fg;
     PrintWriter out;
     ExecutorService executor;
+    boolean isConnected = false;
 
-    public Model(String host, int port /*TODO delete parameters*/) {
+    public Model() {
         executor =  Executors.newSingleThreadExecutor();
-        connectFG(host, port); // TODO delete this line and detach connection from C-tor
     }
 
     public void connectFG(String host, int port){
@@ -20,8 +20,9 @@ public class Model {
             @Override
             public void run() {
                 try {
-                    fg = new Socket("172.19.3.158", 6400);
+                    fg = new Socket(host, port);
                     out = new PrintWriter(fg.getOutputStream(), true);
+                    isConnected = true;
                 } catch (Exception e) {
                     System.out.println(e);
                 }
@@ -34,15 +35,16 @@ public class Model {
     }
 
     public void setProperty(String val, String property){
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                String path = "set /controls/flight/"+property;
-                if(property.equals("throttle"))
-                    path = "set /controls/engines/current-engine/throttle";
-                out.print(path+" "+val+"\r\n");
-                out.flush();
-            }
-        });
+        if(isConnected)
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    String path = "set /controls/flight/" + property;
+                    if (property.equals("throttle"))
+                        path = "set /controls/engines/current-engine/throttle";
+                    out.print(path + " " + val + "\r\n");
+                    out.flush();
+                }
+            });
     }
 }
