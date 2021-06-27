@@ -21,12 +21,12 @@ public class MainActivity extends AppCompatActivity {
         throttleSeek = (SeekBar) findViewById(R.id.throttle);
         rudderSeek = (SeekBar) findViewById(R.id.rudder);
         joystick = (Joystick) findViewById(R.id.joystick);
-        ip_text = (EditText)findViewById(R.id.ip_input);
-        port_text = (EditText)findViewById(R.id.port_input);
+        ip_text = (EditText) findViewById(R.id.ip_input);
+        port_text = (EditText) findViewById(R.id.port_input);
 
-        joystick.setListener(new Joystick.JoystickListener() {
+        joystick.setOnJoystickChangeListener(new Joystick.OnJoystickChangeListener() {
             @Override
-            public void update(float x, float y) {
+            public void onStateChanged(float x, float y) {
                 vm.setAileron(x);
                 vm.setElevation(y);
             }

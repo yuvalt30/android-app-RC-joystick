@@ -11,16 +11,15 @@ import androidx.annotation.Nullable;
 
 public class Joystick extends View {
 
-    public interface JoystickListener {
-        void update(float x, float y);
+    public interface OnJoystickChangeListener {
+        void onStateChanged(float x, float y);
     }
 
     // FIELDS //
     private float centerX;
     private float centerY;
-    private float radius;
     private Paint paint = new Paint();
-    private JoystickListener listener;
+    private OnJoystickChangeListener listener;
 
 
     // CONSTRUCTORS //
@@ -57,17 +56,17 @@ public class Joystick extends View {
         super.onTouchEvent(event);
         float x = event.getX() / getWidth();
         float y = event.getY() / getHeight();
-        if (-1 <= x && x <= 1)
+        if (0 <= x && x <= 1)
             centerX = x;
-        if (-1 <= y && y <= 1)
+        if (0 <= y && y <= 1)
             centerY = y;
         if (listener != null)
-            listener.update(centerX * 2 - 1, centerY * -2 + 1);
+            listener.onStateChanged(centerX * 2 - 1, centerY * -2 + 1);
         invalidate();
         return true;
     }
 
-    public void setListener(JoystickListener newListener)
+    public void setOnJoystickChangeListener(OnJoystickChangeListener newListener)
     {
         listener = newListener;
     }
