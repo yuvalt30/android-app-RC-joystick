@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar throttleSeek;
     private SeekBar rudderSeek;
     private TextView text;
-    private ImageView joystick;
+    private Joystick joystick;
     private RelativeLayout moveLayout;
     private ViewModel vm;
     private EditText ip_text, port_text;
@@ -29,8 +29,14 @@ public class MainActivity extends AppCompatActivity {
         throttleSeek = (SeekBar) findViewById(R.id.throttle);
         rudderSeek = (SeekBar) findViewById(R.id.rudder);
         text = (TextView) findViewById(R.id.text);
-        joystick = (ImageView) findViewById(R.id.joystick);
-        moveLayout = (RelativeLayout) findViewById(R.id.move);
+        joystick = (Joystick) findViewById(R.id.joystick);
+        joystick.setListener(new Joystick.JoystickListener() {
+            @Override
+            public void update(float x, float y) {
+                vm.setAileron(x);
+                vm.setElevation(y);
+            }
+        });
         ip_text = (EditText)findViewById(R.id.ip_input);
         port_text = (EditText)findViewById(R.id.port_input);
 
@@ -58,40 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {	}
-        });
-
-        joystick.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent event) {
-
-                final int x = (int) event.getRawX();
-                final int y = (int) event.getRawY();
-
-
-                switch (event.getAction() & MotionEvent.ACTION_MASK) {
-
-                    case MotionEvent.ACTION_DOWN:
-                        RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
-                        xDelta = x - lParams.leftMargin;
-                        yDelta = y - lParams.topMargin;
-                        break;
-
-                    case MotionEvent.ACTION_UP:
-                        break;
-
-                    case MotionEvent.ACTION_MOVE:
-                        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view
-                                .getLayoutParams();
-                        layoutParams.leftMargin = x - xDelta;
-                        layoutParams.topMargin = y - yDelta;
-                        layoutParams.rightMargin = 0;
-                        layoutParams.bottomMargin = 0;
-                        view.setLayoutParams(layoutParams);
-                        break;
-                }
-                moveLayout.invalidate();
-                return true;
-            }
         });
     }
 

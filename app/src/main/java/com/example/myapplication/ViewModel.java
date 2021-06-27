@@ -12,7 +12,7 @@ public class ViewModel {
     }
 
     public void setElevation(float val) {
-        m.setProperty(Float.toString(val), "elevation");
+        m.setProperty(Float.toString(val), "elevator");
     }
 
     public void setRudder(double val) {
