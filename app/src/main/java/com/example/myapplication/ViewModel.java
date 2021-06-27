@@ -24,6 +24,6 @@ public class ViewModel implements  IViewModel{
     }
 
     public void connect(String host, int port) {
-        m.connectFG(host, port);
+        m.connect(host, port);
     }
 }

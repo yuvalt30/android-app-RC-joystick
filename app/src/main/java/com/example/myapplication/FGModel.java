@@ -15,7 +15,7 @@ public class FGModel implements  IModel{
         executor =  Executors.newSingleThreadExecutor();
     }
 
-    public void connectFG(String host, int port){
+    public void connect(String host, int port){
         executor.execute(new Runnable() {
             @Override
             public void run() {

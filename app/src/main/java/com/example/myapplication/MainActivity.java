@@ -11,7 +11,6 @@ public class MainActivity extends AppCompatActivity {
     private IViewModel vm;
     private EditText ip_text, port_text;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
