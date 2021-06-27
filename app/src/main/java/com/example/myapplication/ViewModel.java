@@ -1,10 +1,10 @@
 package com.example.myapplication;
 
-public class ViewModel {
-    Model m;
+public class ViewModel implements  IViewModel{
+    IModel m;
 
-    public ViewModel(Model m) {
-        this.m = m;
+    public ViewModel() {
+        this.m = new Model();
     }
 
     public void setAileron(float val) {
@@ -23,7 +23,7 @@ public class ViewModel {
         m.setProperty(Double.toString(val), "throttle");
     }
 
-    public void connectFG(String host, int port) {
+    public void connect(String host, int port) {
         m.connectFG(host, port);
     }
 }

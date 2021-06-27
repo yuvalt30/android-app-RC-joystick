@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView text;
     private Joystick joystick;
     private RelativeLayout moveLayout;
-    private ViewModel vm;
+    private IViewModel vm;
     private EditText ip_text, port_text;
     private View button;
 
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        vm = new ViewModel(new Model());
+        vm = new ViewModel();
         throttleSeek = (SeekBar) findViewById(R.id.throttle);
         rudderSeek = (SeekBar) findViewById(R.id.rudder);
         text = (TextView) findViewById(R.id.text);
@@ -73,6 +73,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             intport = Integer.parseInt(port_text.getText().toString());
         }catch(Exception e){}
-        vm.connectFG(sip, intport);
+        vm.connect(sip, intport);
     }
 }
