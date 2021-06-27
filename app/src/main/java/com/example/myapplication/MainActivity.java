@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView text;
     private ImageView joystick;
     private RelativeLayout moveLayout;
-    private Model m;
+    private ViewModel vm;
     private EditText ip_text, port_text;
     private View button;
 
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        m = new Model();
+        vm = new ViewModel(new Model());
         throttleSeek = (SeekBar) findViewById(R.id.throttle);
         rudderSeek = (SeekBar) findViewById(R.id.rudder);
         text = (TextView) findViewById(R.id.text);
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         throttleSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                m.setProperty(Double.toString(progress/100.0),"throttle");
+                vm.setThrottle(progress/100.0);
             }
 
             @Override
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         rudderSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                m.setProperty(Double.toString((progress-100)/100.0),"rudder");
+                vm.setRudder((progress-100)/100.0);
             }
 
             @Override
@@ -101,6 +101,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             intport = Integer.parseInt(port_text.getText().toString());
         }catch(Exception e){}
-        m.connectFG(sip, intport);
+        vm.connectFG(sip, intport);
     }
 }

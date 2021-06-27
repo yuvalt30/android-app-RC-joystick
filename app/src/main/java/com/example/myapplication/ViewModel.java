@@ -3,20 +3,27 @@ package com.example.myapplication;
 public class ViewModel {
     Model m;
 
-    public ViewModel(Model m){
-        m=m;
+    public ViewModel(Model m) {
+        this.m = m;
     }
 
-    public void setAileron(float val){
+    public void setAileron(float val) {
         m.setProperty(Float.toString(val), "aileron");
     }
-    public void setElevation(float val){
+
+    public void setElevation(float val) {
         m.setProperty(Float.toString(val), "elevation");
     }
-    public void setRudder(float val){
-        m.setProperty(Float.toString(val), "rudder");
+
+    public void setRudder(double val) {
+        m.setProperty(Double.toString(val), "rudder");
     }
-    public void setThrottle(float val){
-        m.setProperty(Float.toString(val), "throttle");
+
+    public void setThrottle(double val) {
+        m.setProperty(Double.toString(val), "throttle");
+    }
+
+    public void connectFG(String host, int port) {
+        m.connectFG(host, port);
     }
 }
