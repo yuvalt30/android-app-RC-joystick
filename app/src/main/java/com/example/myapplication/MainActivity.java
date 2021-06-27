@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +8,7 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar throttleSeek;
     private SeekBar rudderSeek;
     private Joystick joystick;
-    private ViewModel vm;
+    private IViewModel vm;
     private EditText ip_text, port_text;
 
 
@@ -18,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        vm = new ViewModel(new Model());
+        vm = new ViewModel();
         throttleSeek = (SeekBar) findViewById(R.id.throttle);
         rudderSeek = (SeekBar) findViewById(R.id.rudder);
         joystick = (Joystick) findViewById(R.id.joystick);
@@ -66,6 +65,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             intport = Integer.parseInt(port_text.getText().toString());
         }catch(Exception e){}
-        vm.connectFG(sip, intport);
+        vm.connect(sip, intport);
     }
 }
