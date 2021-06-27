@@ -19,7 +19,7 @@ The app is written in JAVA.
 
 
 ## More documentation:
-- [UML diagram](UML.jpg)
+- [UML diagram](UML.jpeg)
 
 
 ## Link to video for demo of using:
