@@ -62,7 +62,7 @@ public class Joystick extends View {
         if (-1 <= y && y <= 1)
             centerY = y;
         if (listener != null)
-            listener.update(centerX * 2 - 1, centerY * 2 - 1);
+            listener.update(centerX * 2 - 1, centerY * -2 + 1);
         invalidate();
         return true;
     }
