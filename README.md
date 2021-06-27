@@ -4,7 +4,7 @@
 This android application makes your android device a remote controll joystick for FlightGear simulator.
 
 ### General operation:
-FlightGear has to be run on host, user enters host's IP adress and port and connects in order to get control on the aircaft.
+When FlightGear is run on host, user enters host's IP adress and port and connects in order to get control on the aircaft.
 
 ### Before start:
 1. When FG opens user has to define "--telnet=socket,in,10,127.0.0.1,6400,tcp" in Settings-> Additional Settings
@@ -19,8 +19,7 @@ The app is written in JAVA.
 
 
 ## More documentation:
-- [Controller](documentation/comments_on_AnomalyDetectorController.md)
-- [UML diagram](documentation/UML.jpg)
+- [UML diagram](UML.jpg)
 
 
 ## Link to video for demo of using:
