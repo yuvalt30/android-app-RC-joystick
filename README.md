@@ -23,7 +23,7 @@ The app is written in JAVA.
 
 
 ## Link to video for demo of using:
-??????????????
+https://youtu.be/p-DRMUYKTeQ
 
 ## Developed by:
 * Yuval Tal
