@@ -5,13 +5,13 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Model implements  IModel{
+public class FGModel implements  IModel{
     Socket fg;
     PrintWriter out;
     ExecutorService executor;
     boolean isConnected = false;
 
-    public Model() {
+    public FGModel() {
         executor =  Executors.newSingleThreadExecutor();
     }
 
@@ -23,9 +23,7 @@ public class Model implements  IModel{
                     fg = new Socket(host, port);
                     out = new PrintWriter(fg.getOutputStream(), true);
                     isConnected = true;
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
+                } catch (Exception e) { }
                 setProperty("0", "elevator");
                 setProperty("0", "aileron");
                 setProperty("0", "throttle");

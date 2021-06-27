@@ -4,7 +4,7 @@ public class ViewModel implements  IViewModel{
     IModel m;
 
     public ViewModel() {
-        this.m = new Model();
+        this.m = new FGModel();
     }
 
     public void setAileron(float val) {
